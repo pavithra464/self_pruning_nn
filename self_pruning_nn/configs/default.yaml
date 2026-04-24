@@ -1,0 +1,25 @@
+# Model Architecture
+in_features: 3072 # 3 * 32 * 32
+hidden_sizes: [512, 256, 128]
+num_classes: 10
+dropout_p: 0.1
+init_gate_val: 3.0
+
+# Training & Hyperparameters
+batch_size: 128
+learning_rate: 0.001
+epochs: 10
+
+# Regularization & Pruning
+# The sweeps will override these lambda values during experiments
+gate_l1_penalty: 0.0
+pruning_threshold: 0.01
+
+# System
+seed: 42
+data_dir: "./data"
+output_dir: "./outputs"
+device: "auto"
+
+# Sweep Configurations
+lambdas: [0.0, 0.0001, 0.005, 0.05]

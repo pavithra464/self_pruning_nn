@@ -1,0 +1,11 @@
+torch
+torchvision
+pytest
+numpy
+pyyaml
+matplotlib
+pandas
+tqdm
+fastapi
+uvicorn
+python-multipart
