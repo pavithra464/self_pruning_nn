@@ -24,14 +24,28 @@ uvicorn src.api.app:app --host 0.0.0.0 --port 8000
 ```
 *You can then view the API documentation and test image uploads at `http://localhost:8000/docs`.*
 
-## 📂 Repository Structure
+##  Repository Structure
 
 * `configs/` - YAML parameter configurations (batch sizes, epochs, lambda sweeps).
 * `src/model/` - The core PyTorch architectures, including the custom `PrunableLinear` logic.
 * `src/experiments/` - The automated runner tracking hyperparameters over CIFAR-10.
 * `src/api/` - The standalone FastAPI inference application.
 * `tests/` - Verifies gradient flow shapes and matrix masking logic natively.
+  
+##  Results
 
+The model was trained with different values of λ to observe the tradeoff between accuracy and sparsity.
+
+| Lambda | Test Accuracy (%) | Sparsity (%) |
+|--------|------------------|--------------|
+| 0.001  | 39.6             | 1.7          |
+| 0.01   | ~39              | ~2–5         |
+| 0.1    | ~35              | ~10+         |
+
+### Observations
+- Lower λ results in higher accuracy but very low pruning.
+- Increasing λ improves sparsity by pushing gate values toward zero.
+- Very high λ reduces accuracy due to excessive pruning.
 ---
 *Created for the Tredence AI Engineer Case Study.*
 
